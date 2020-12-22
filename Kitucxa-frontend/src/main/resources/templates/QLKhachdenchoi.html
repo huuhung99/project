@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Quản lý khách đến chơi</title>
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+
+<body>
+   <div align="center">
+      <h1>Quản lý khách đến chơi</h1>
+      <h2><a th:href="@{/}" class="btn btn-warning">Trang chủ</a></h2>
+      <div><i><u> <a href="/quanlykhach/dskhachdenchoi">xem thống kê khách đến chơi</a> </u></i></div>
+      <div>Tìm kiếm sinh viên: </div>
+      <Form method="GET" name="search" th:action="@{/quanlykhach/timkiem}">
+         <input name="txtSearch" type="text" style="width: 200">
+         <input name="subSearch" type="submit" class="btn btn-success" value="Tìm kiếm">
+      </Form>
+      <div class=”col-sm-6″>
+      <form method="get" th:action="@{/quanlykhach/dskhach}">
+         <table border="1px" cellpadding="5">
+            <tr>
+               <th>Mã sv</th>
+               <th>Họ tên</th>
+               <th>Ngày sinh</th>
+               <th>Số CMT</th>
+               <th>Lớp</th>
+               <th>Chọn</th>
+            </tr>
+            <tr th:each="sv : ${sinhviens}">
+               <td th:text="${sv.id}"></td>
+               <td th:text="${sv.ten}"></td>
+               <td th:text="${sv.ngaysinh}"></td>
+               <td th:text="${sv.soCMT}"></td>
+               <td th:text="${sv.lop}"></td>
+               <td><input type="radio" name="chon" th:value="${sv.id}"></td>
+            </tr>
+         </table>
+         <input type="submit" value="Tiếp tục">
+      </form>
+      </div>
+   </div>
+</body>
+
+</html>

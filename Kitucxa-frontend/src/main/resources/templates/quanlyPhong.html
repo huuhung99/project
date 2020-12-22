@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Quản lý Phòng</title>
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div align="center">
+		<h1>Quản lý Phòng</h1>
+		<h2>
+			<a th:href="@{/quan-ly-phong/them}" class="btn btn-warning">Thêm Phòng</a>
+			<a th:href="@{/}" class="btn btn-warning">Trang chủ</a>
+		</h2>
+		<hr>
+	</div>
+	<div align="center">
+		<h2>Danh sách Phòng</h2>
+		<br>
+		<form method="get" th:action="@{/quan-ly-phong/tim}">
+			<input type="text" name="keyword" placeholder="Tìm kiếm..." />
+			<input type="submit" value="Tìm kiếm" class="btn btn-success" />
+		</form>
+		<br>
+		<table border="1" cellpadding="5">
+			<tr class="text-center">
+				<th>ID</th>
+				<th>Số phòng</th>
+				<th>Loại phòng</th>
+				<th>Đơn giá</th>
+				<th>Số người ở tối đa</th>
+				<th>Sửa/Xóa</th>
+			</tr>
+			<tr th:each="phong : ${listPhong}" class="text-center">
+				<td th:utext="${phong.id}"></td>
+				<td th:utext="${phong.sophong}"></td>
+				<td th:utext="${phong.loaiphong}"></td>
+				<td th:utext="${phong.dongia}"></td>
+				<td th:utext="${phong.songuoitoida}"></td>
+				<td><a th:href="@{'/quan-ly-phong/sua/' + ${phong.id}}" class="btn btn-success">Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/quan-ly-phong/xoa/' + ${phong.id}}" class="btn btn-danger">Xóa</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

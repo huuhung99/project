@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Quản lý thuê phòng</title>
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div>
+		  <div align="center">
+      <h1>Quản lý thuê phòng</h1>
+      <div>Tìm kiếm sinh viên: </div>
+      <Form method="GET" name="search" th:action="@{/dang-ki-thue-phong/timkiem}">
+         <input name="txtSearch" type="text" style="width: 200">
+         <input name="subSearch" type="submit" value="Tìm kiếm">
+      </Form>
+      <form method="get" th:action="@{/dang-ki-thue-phong/dsphong}">
+         <table border="1px">
+            <tr>
+               <th>Mã sv</th>
+               <th>Họ tên</th>
+               <th>Ngày sinh</th>
+               <th>Số CMT</th>
+               <th>Lớp</th>
+               <th>Chọn</th>
+            </tr>
+            <tr th:each="sv : ${sinhviens}">
+               <td th:text="${sv.id}"></td>
+               <td th:text="${sv.ten}"></td>
+               <td th:text="${sv.ngaysinh}"></td>
+               <td th:text="${sv.soCMT}"></td>
+               <td th:text="${sv.lop}"></td>
+               <td><input type="radio" name="chon" th:value="${sv.id}"></td>
+            </tr>
+         </table>
+         <input type="submit" value="Tiếp tục">
+      </form>
+   </div>
+	</div>
+</body>
+
+</html>

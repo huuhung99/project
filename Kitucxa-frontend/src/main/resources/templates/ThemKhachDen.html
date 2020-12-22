@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Quản lý khách đên chơi</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div align="center">
+		<h1>Quản lý khách đến chơi</h1>
+		<div>Thêm khách đến chơi:</div>
+		<div class=”col-sm-6″>
+			<form name="addKhach" method="post" th:object="${khach}" th:action="@{/quanlykhach/luu-khach}">
+				<table border="1px" ellpadding="5">
+					<tr>
+						<td>Số CMT</td>
+						<td><input type="text" th:Field="*{soCMT}"></td>
+					</tr>
+					<tr>
+						<td>Họ tên</td>
+						<td><input type="text" th:Field="*{ten}"></td>
+					</tr>
+					<tr>
+						<td>Ngày sinh</td>
+						<td><input type="date" name="ngaysinh"></td>
+					</tr>
+
+				</table>
+
+				<input style="margin-left: 200px;" type="submit" value="Lưu" name="luu">
+			</form>
+			<div class=”col-sm-6″><a href="@{/quanlykhach/quaylai}" style="float: none; margin-left: 200px;">Huỷ</a></div>
+
+		</div>		
+	</div>
+</body>
+
+</html>

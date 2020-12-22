@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<title>Xem danh sách đến chơi</title>
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div align="center">
+		<h1>Xem danh sách khách đến chơi</h1>
+		<form method="get" th:action="@{/quanlykhach/dskhach-den-choi-trong-thoigian}">
+			<div>Chọn khoảng thời gian:</div>
+			<div>
+				từ: <input name="thoigianbd" type="date">
+			</div>
+			<div>
+				đến: <input name="thoigiankt" type="date">
+			</div>
+			<input type="submit" name="sub" class="btn btn-success" value="tìm kiếm">
+		</form>
+		<table border="1px">
+			<tr>
+				<th>Mã SV</th>
+				<th>Tên SV</th>
+				<th>Ngày sinh SV</th>
+				<th>CMT Khách</th>
+				<th>Tên Khách</th>
+				<th>Ngày Sinh Khách</th>
+				<th>Ngày đến</th>
+			</tr>
+			<div th:each="ngayden : ${ngaydens}">
+				<div th:each="khach: ${ngayden.Khach}">
+					<div th:each="sinhvien : ${ngayden.khach.sinhvien}">
+			<tr>
+				<td th:text="${sinhvien.id}"></td>
+				<td th:text="${sinhvien.ten}"></td>
+				<td th:text="${sinhvien.ngaysinh}"></td>
+				<td th:text="${khach.soCMT}"></td>
+				<td th:text="${khach.ten}"></td>
+				<td th:text="${#dates.format(khach.ngaysinh, 'dd-MM-yyyy')}"></td>
+				<td th:text="${#dates.format(ngayden.ngayden, 'dd-MM-yyyy')}"></td>
+			</tr>
+					</div>
+				</div>
+			</div>
+		</table>
+	</div>
+
+</body>
